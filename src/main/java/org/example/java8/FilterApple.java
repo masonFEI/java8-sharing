@@ -33,6 +33,7 @@ public class FilterApple {
     }
 
 
+    @FunctionalInterface
     public interface AppleFilter {
         boolean filter(Apple apple);
     }
@@ -71,18 +72,38 @@ public class FilterApple {
 //
 //        System.out.println(greenApples);
 
-        List<Apple> greens = findApples(list, new GreenAnd150WeightFilter());
-        System.out.println(greens);
-        List<Apple> yellows = findApples(list, new YellowLess150WeightFilter());
-        System.out.println(yellows);
+//        List<Apple> greens = findApples(list, new GreenAnd150WeightFilter());
+//        System.out.println(greens);
+//        List<Apple> yellows = findApples(list, new YellowLess150WeightFilter());
+//        System.out.println(yellows);
+//
+//        List<Apple> reds = findApples(list, new AppleFilter() {
+//            @Override
+//            public boolean filter(Apple apple) {
+//                return "red".equals(apple.getColor());
+//            }
+//        });
+//        System.out.println(reds);
 
-        List<Apple> reds = findApples(list, new AppleFilter() {
-            @Override
-            public boolean filter(Apple apple) {
-                return "red".equals(apple.getColor());
-            }
-        });
-        System.out.println(reds);
+//        List<Apple> lambdaResult = findApples(list, apple -> apple.getColor().equals("green"));
+//
+//        System.out.println(lambdaResult);
+
+
+        try {
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    System.out.println(Thread.currentThread().getName());
+                }
+            }).start();
+
+            new Thread(() -> System.out.println(Thread.currentThread().getName())).start();
+            Thread.currentThread().join();
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
 
     }
 
