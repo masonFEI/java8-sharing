@@ -16,6 +16,9 @@ public class Apple {
         this.weight = weight;
     }
 
+    public Apple() {
+    }
+
     @Override
     public String toString() {
         return "Apple{" +
