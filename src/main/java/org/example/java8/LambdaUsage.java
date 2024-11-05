@@ -3,9 +3,7 @@ package org.example.java8;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.function.BiPredicate;
-import java.util.function.LongPredicate;
-import java.util.function.Predicate;
+import java.util.function.*;
 
 public class LambdaUsage {
 
@@ -60,6 +58,30 @@ public class LambdaUsage {
         return result;
     }
 
+    private static void simpleTestConsumer(List<Apple> source, Consumer<Apple> consumer) {
+
+        for (Apple apple : source) {
+            consumer.accept(apple);
+        }
+    }
+
+
+    private static void simpleBiConsumer(String c, List<Apple> source, BiConsumer<Apple, String> consumer) {
+        for (Apple apple : source) {
+            consumer.accept(apple, c);
+        }
+    }
+
+    private static String testFunction(Apple apple, Function<Apple, String> function) {
+        return function.apply(apple);
+    }
+
+
+    private static Apple testBiFunction(String color, long weight, BiFunction<String, Long, Apple> function) {
+        return function.apply(color, weight);
+    }
+
+
     public static void main(String[] args) {
 
 //        Runnable r1 = () -> System.out.println("Hello World");
@@ -81,8 +103,32 @@ public class LambdaUsage {
 //        List<Apple> apples = filterByWeight(list, w -> w > 100);
 //        System.out.println(apples);
 
-        List<Apple> apples1 = filterByBiPredicate(list, (s, w) -> s.equals("green") && w > 100);
-        System.out.println(apples1);
+//        List<Apple> apples1 = filterByBiPredicate(list, (s, w) -> s.equals("green") && w > 100);
+//        System.out.println(apples1);
+
+
+//        simpleTestConsumer(list, a -> System.out.println(a));
+
+//        simpleBiConsumer("XXX", list, (a, s) -> System.out.println(s + a.getColor() + ":Weight=>" + a.getWeight()));
+
+
+//        String result3 = testFunction(new Apple("yello", 100), Apple::toString);
+//        System.out.println(result3);
+
+//        IntFunction<Double> f = i -> i * 100.0d;
+//        Double result4 = f.apply(10);
+//        System.out.println(result4);
+
+//        Apple blue = testBiFunction("blue", 130, (s, w) -> new Apple(s, w));
+//        System.out.println(blue);
+
+//        Supplier<String> s = String::new; // method inference
+//        System.out.println(s.get());
+//        System.out.println(s.get().getClass());
+
+        Apple green = createApple(() -> new Apple("Green", 100));
+
+        System.out.println(green);
 
     }
 
@@ -91,5 +137,10 @@ public class LambdaUsage {
 
         r.run();
     }
+
+    private static Apple createApple(Supplier<Apple> supplier) {
+        return supplier.get();
+    }
+
 
 }
