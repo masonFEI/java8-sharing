@@ -7,4 +7,8 @@ public class MethodReference {
 
     }
 
+
+    private static void useConsumer(){
+
+    }
 }
