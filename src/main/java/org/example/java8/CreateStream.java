@@ -11,14 +11,17 @@ public class CreateStream {
 
 
     public static void main(String[] args) {
-        createStreamFromCollection().forEach(System.out::println);
-        System.out.println("======================================");
-        createStreamFromValues().forEach(System.out::println);
-        System.out.println("======================================");
-        createStreamFromArrays().forEach(System.out::println);
-        System.out.println("======================================");
-        Stream<String> streamFromFile = createStreamFromFile();
-        System.out.println(streamFromFile);
+//        createStreamFromCollection().forEach(System.out::println);
+//        System.out.println("======================================");
+//        createStreamFromValues().forEach(System.out::println);
+//        System.out.println("======================================");
+//        createStreamFromArrays().forEach(System.out::println);
+//        System.out.println("======================================");
+//        Stream<String> streamFromFile = createStreamFromFile();
+//        System.out.println(streamFromFile);
+
+        createStreamFromIterator().forEach(System.out::println);
+
     }
 
 
@@ -50,5 +53,11 @@ public class CreateStream {
         }
 
     }
+
+    private static Stream<Integer> createStreamFromIterator() {
+        Stream<Integer> iterate = Stream.iterate(0, n -> n + 2).limit(10);
+        return iterate;
+    }
+
 
 }
