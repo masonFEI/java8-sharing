@@ -20,7 +20,9 @@ public class CreateStream {
 //        Stream<String> streamFromFile = createStreamFromFile();
 //        System.out.println(streamFromFile);
 
-        createStreamFromIterator().forEach(System.out::println);
+//        createStreamFromIterator().forEach(System.out::println);
+
+        createStreamFromGenerate().forEach(System.out::println);
 
     }
 
@@ -57,6 +59,12 @@ public class CreateStream {
     private static Stream<Integer> createStreamFromIterator() {
         Stream<Integer> iterate = Stream.iterate(0, n -> n + 2).limit(10);
         return iterate;
+    }
+
+    private static Stream<Double> createStreamFromGenerate(){
+
+        return Stream.generate(Math::random).limit(10);
+
     }
 
 
