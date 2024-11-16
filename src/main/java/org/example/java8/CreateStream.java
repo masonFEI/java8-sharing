@@ -5,6 +5,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
+import java.util.function.Supplier;
 import java.util.stream.Stream;
 
 public class CreateStream {
@@ -22,7 +24,10 @@ public class CreateStream {
 
 //        createStreamFromIterator().forEach(System.out::println);
 
-        createStreamFromGenerate().forEach(System.out::println);
+//        createStreamFromGenerate().forEach(System.out::println);
+
+
+        createObjStreamFromGenerate().forEach(System.out::println);
 
     }
 
@@ -61,10 +66,59 @@ public class CreateStream {
         return iterate;
     }
 
-    private static Stream<Double> createStreamFromGenerate(){
+    private static Stream<Double> createStreamFromGenerate() {
 
         return Stream.generate(Math::random).limit(10);
 
+    }
+
+    /**
+     * 定义supplier，作为Stream.generate的入参
+     */
+    static class ObjSupplier implements Supplier<Obj> {
+
+        private int index = 0;
+
+        private Random random = new Random(System.currentTimeMillis());
+
+        @Override
+        public Obj get() {
+            index = random.nextInt(100);
+            return new Obj(index, "Name->" + index);
+        }
+    }
+
+
+    private static Stream<Obj> createObjStreamFromGenerate() {
+        return Stream.generate(new ObjSupplier()).limit(10);
+    }
+
+
+    static class Obj {
+        private int id;
+        private String name;
+
+        public Obj(int id, String name) {
+            this.id = id;
+            this.name = name;
+        }
+
+        public int getId() {
+            return id;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+
+        @Override
+        public String toString() {
+            return "Obj{" +
+                    "id=" + id +
+                    ", name='" + name + '\'' +
+                    '}';
+        }
     }
 
 
