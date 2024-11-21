@@ -28,6 +28,13 @@ public class NumericStream {
                 .map(b -> new int[]{a, b, (int) Math.sqrt(a * a + b * b)})
                 .forEach(r -> System.out.println("a=" + r[0] + ",b=" + r[1] + ",c=" + r[2]));
 
+        System.out.println("===============================");
+
+        IntStream.rangeClosed(1, 100)
+                .filter(b -> Math.sqrt(a * a + b * b) % 1 == 0)
+                .mapToObj(b -> new int[]{a, b, (int) Math.sqrt(a * a + b * b)})
+                .forEach(r -> System.out.println("a=" + r[0] + ",b=" + r[1] + ",c=" + r[2]));
+
 
     }
 
