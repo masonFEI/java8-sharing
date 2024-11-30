@@ -44,6 +44,13 @@ public class StreamInAction {
                 .sorted()
                 .reduce("", (name1, name2) -> name1 + name2);
         System.out.println(value);
+        System.out.println("==============================================");
+        boolean liveInMilan1 = transactions.stream().anyMatch(t -> t.getTrader().getCity().equals("Milan"));
+        boolean liveInMilan2 = transactions.stream().map(Transaction::getTrader).anyMatch(t -> t.getCity().equals("Milan"));
+        System.out.println(liveInMilan1);
+        System.out.println(liveInMilan2);
+        System.out.println("==============================================");
+        transactions.stream().filter(t -> t.getTrader().getCity().equals("Cambridge")).map(Transaction::getValue).forEach(System.out::println);
 
 
     }
