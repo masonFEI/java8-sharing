@@ -3,6 +3,7 @@ package org.example.java8;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class StreamInAction {
@@ -51,6 +52,12 @@ public class StreamInAction {
         System.out.println(liveInMilan2);
         System.out.println("==============================================");
         transactions.stream().filter(t -> t.getTrader().getCity().equals("Cambridge")).map(Transaction::getValue).forEach(System.out::println);
+        System.out.println("==============================================");
+        Optional<Integer> maxValue = transactions.stream().map(Transaction::getValue).reduce((i, j) -> i > j ? i : j);
+        System.out.println(maxValue.get());
+        System.out.println("==============================================");
+        Optional<Integer> minValue = transactions.stream().map(Transaction::getValue).reduce((i, j) -> i < j ? i : j);
+        System.out.println(minValue.get());
 
 
     }
