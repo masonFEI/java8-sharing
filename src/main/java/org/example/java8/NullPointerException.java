@@ -14,14 +14,33 @@ public class NullPointerException {
     private static String getInsuranceNameByDeepDoubts(Person person) {
         if (null != person) {
             Car car = person.getCar();
-            if(null != car){
+            if (null != car) {
                 Insurance insurance = car.getInsurance();
-                if(null != insurance){
+                if (null != insurance) {
                     return insurance.getName();
                 }
             }
         }
         return "UNKNOWN";
+    }
+
+
+    private static String getInsuranceNameByMultExit(Person person) {
+        final String defaultValue = "UNKNOWN";
+        if (null == person) {
+            return defaultValue;
+        }
+        Car car = person.getCar();
+        if (null == car) {
+            return defaultValue;
+        }
+        Insurance insurance = car.getInsurance();
+        if (null == insurance) {
+            return defaultValue;
+        }
+
+        return insurance.getName();
+
     }
 
 
