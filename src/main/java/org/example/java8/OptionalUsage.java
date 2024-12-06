@@ -11,16 +11,19 @@ public class OptionalUsage {
 //        insuranceOptional.get();
 
         Optional<Insurance> insuranceOptional1 = Optional.of(new Insurance());
-        insuranceOptional1.get();
+//        insuranceOptional1.get();
+//
+//        Optional<Insurance> objectOptional1 = Optional.ofNullable(null);
+//        objectOptional1.orElseGet(Insurance::new);
+//
+//        objectOptional1.orElse(new Insurance());
+//
+//        objectOptional1.orElseThrow(RuntimeException::new);
+//
+//        objectOptional1.orElseThrow(()->new RuntimeException("not have reference"));
 
-        Optional<Insurance> objectOptional1 = Optional.ofNullable(null);
-        objectOptional1.orElseGet(Insurance::new);
-
-        objectOptional1.orElse(new Insurance());
-
-        objectOptional1.orElseThrow(RuntimeException::new);
-
-        objectOptional1.orElseThrow(()->new RuntimeException("not have reference"));
+        Insurance insurance = insuranceOptional1.filter(i -> i.getName() == null).get();
+        System.out.println(insurance);
 
 
     }
