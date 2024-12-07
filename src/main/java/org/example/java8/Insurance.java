@@ -5,7 +5,7 @@ package org.example.java8;
  */
 public class Insurance {
 
-    private String name;
+    private String name ="Alex wang";
 
     public String getName() {
         return name;
