@@ -1,10 +1,12 @@
 package org.example.java8;
 
+import java.util.Optional;
+
 public class Person {
 
-    private Car car;
+    private Optional<Car> car;
 
-    public Car getCar() {
+    public Optional<Car> getCar() {
         return car;
     }
 }

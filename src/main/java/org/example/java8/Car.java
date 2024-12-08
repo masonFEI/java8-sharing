@@ -1,11 +1,13 @@
 package org.example.java8;
 
+import java.util.Optional;
+
 public class Car {
 
 
-    private Insurance insurance;
+    private Optional<Insurance> insurance;
 
-    public Insurance getInsurance() {
+    public Optional<Insurance> getInsurance() {
         return insurance;
     }
 
