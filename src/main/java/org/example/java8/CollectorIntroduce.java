@@ -4,8 +4,12 @@
  */
 package org.example.java8;
 
+import com.sun.javafx.collections.MappingChange;
+
 import java.util.Arrays;
 import java.util.List;
+import java.util.*;
+import java.util.HashMap;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -22,5 +26,19 @@ public class CollectorIntroduce {
         List<Apple> list = Arrays.asList(new Apple("green", 160), new Apple("red", 200), new Apple("green", 100), new Apple("yellow", 100));
         List<Apple> greenList = list.stream().filter(a -> a.getColor().equals("green")).collect(Collectors.toList());
         Optional.ofNullable(greenList).ifPresent(System.out::println);
+
+
     }
+
+    private static Map<String,List<Apple>> groupByNormal(List<Apple> apples){
+        Map<String, List<Apple>> map = new HashMap<>();
+        for(Apple apple : apples){
+            List<Apple> list = map.computeIfAbsent(apple.getColor(), k -> new ArrayList<>());
+
+            list.add(apple);
+        }
+
+        return map;
+    }
+
 }
