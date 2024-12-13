@@ -4,14 +4,10 @@
  */
 package org.example.java8;
 
-import com.sun.javafx.collections.MappingChange;
-
-import java.util.Arrays;
-import java.util.List;
 import java.util.*;
-import java.util.HashMap;
-import java.util.Optional;
 import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.groupingBy;
 
 /**
  * CollectorIntroduce
@@ -30,6 +26,7 @@ public class CollectorIntroduce {
 //        Optional.ofNullable(groupByNormal(greenList)).ifPresent(System.out::println);
 
         Optional.ofNullable(groupByFunction(list)).ifPresent(System.out::println);
+        Optional.ofNullable(groupByCollector(list)).ifPresent(System.out::println);
 
     }
 
@@ -58,6 +55,17 @@ public class CollectorIntroduce {
         );
 
         return map;
+    }
+
+    private static Map<String, List<Apple>> groupByCollector(List<Apple> apples) {
+
+
+        Map<String, List<Apple>> collect = apples.stream().collect(groupingBy(Apple::getColor));
+
+        return apples.stream().collect(Collectors.groupingBy(Apple::getColor));
+
+
+
     }
 
 
