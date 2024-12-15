@@ -33,6 +33,7 @@ public class CollectorsAction {
     public static void main(String[] args) {
         testAveragingDouble();
         testAveragingInt();
+        testAveragingLong();
     }
 
     private static void testAveragingDouble(){
@@ -45,6 +46,12 @@ public class CollectorsAction {
         System.out.println("testAveragingInt");
 
         Optional.ofNullable(menu.stream().collect(Collectors.averagingInt(Dish::getCalories))).ifPresent(System.out::println);
+    }
+
+    private static void testAveragingLong(){
+        System.out.println("testAveragingLong");
+
+        Optional.ofNullable(menu.stream().collect(Collectors.averagingLong(Dish::getCalories))).ifPresent(System.out::println);
     }
 
 }
