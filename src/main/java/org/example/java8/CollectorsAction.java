@@ -34,24 +34,30 @@ public class CollectorsAction {
         testAveragingDouble();
         testAveragingInt();
         testAveragingLong();
+        testCollectingAndThen();
     }
 
-    private static void testAveragingDouble(){
+    private static void testAveragingDouble() {
         System.out.println("testAveragingDouble");
 
         Optional.ofNullable(menu.stream().collect(Collectors.averagingDouble(Dish::getCalories))).ifPresent(System.out::println);
     }
 
-    private static void testAveragingInt(){
+    private static void testAveragingInt() {
         System.out.println("testAveragingInt");
 
         Optional.ofNullable(menu.stream().collect(Collectors.averagingInt(Dish::getCalories))).ifPresent(System.out::println);
     }
 
-    private static void testAveragingLong(){
+    private static void testAveragingLong() {
         System.out.println("testAveragingLong");
 
         Optional.ofNullable(menu.stream().collect(Collectors.averagingLong(Dish::getCalories))).ifPresent(System.out::println);
+    }
+
+    private static void testCollectingAndThen() {
+        System.out.println("testCollectingAndThen");
+        Optional.ofNullable(menu.stream().collect(Collectors.collectingAndThen(Collectors.averagingInt(Dish::getCalories), a -> " the average calories is->" + a))).ifPresent(System.out::println);
     }
 
 }
