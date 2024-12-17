@@ -5,6 +5,7 @@
 package org.example.java8;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -59,7 +60,11 @@ public class CollectorsAction {
         System.out.println("testCollectingAndThen");
         Optional.ofNullable(menu.stream().collect(Collectors.collectingAndThen(Collectors.averagingInt(Dish::getCalories), a -> " the average calories is->" + a))).ifPresent(System.out::println);
 
-        List<Dish> list = menu.stream().filter(d -> d.getType().equals(Dish.Type.MEAT)).collect(Collectors.toList());
+//        List<Dish> list = menu.stream().filter(d -> d.getType().equals(Dish.Type.MEAT)).collect(Collectors.toList());
+
+        List<Dish> list = menu.stream().filter(d -> d.getType().equals(Dish.Type.MEAT)).collect(Collectors.collectingAndThen(Collectors.toList(), Collections::unmodifiableList));
+
+        list.add(new Dish("pork", false, 100, Dish.Type.OTHER));
         System.out.println(list);
     }
 
