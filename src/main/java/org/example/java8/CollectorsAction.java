@@ -39,7 +39,7 @@ public class CollectorsAction {
     }
 
     private static void testAveragingDouble() {
-        System.out.println("testAveragingDouble");
+        System.out.println("testAveraging Double");
 
         Optional.ofNullable(menu.stream().collect(Collectors.averagingDouble(Dish::getCalories))).ifPresent(System.out::println);
     }
