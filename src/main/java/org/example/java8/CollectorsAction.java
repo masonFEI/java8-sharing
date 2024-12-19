@@ -45,7 +45,7 @@ public class CollectorsAction {
     }
 
     private static void testAveragingInt() {
-        System.out.println("testAveragingInt");
+        System.out.println("test AveragingInt");
 
         Optional.ofNullable(menu.stream().collect(Collectors.averagingInt(Dish::getCalories))).ifPresent(System.out::println);
     }
