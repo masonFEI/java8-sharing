@@ -57,7 +57,7 @@ public class CollectorsAction {
     }
 
     private static void testCollectingAndThen() {
-        System.out.println("testCollectingAndThen");
+        System.out.println("test CollectingAndThen");
         Optional.ofNullable(menu.stream().collect(Collectors.collectingAndThen(Collectors.averagingInt(Dish::getCalories), a -> " the average calories is->" + a))).ifPresent(System.out::println);
 
 //        List<Dish> list = menu.stream().filter(d -> d.getType().equals(Dish.Type.MEAT)).collect(Collectors.toList());
