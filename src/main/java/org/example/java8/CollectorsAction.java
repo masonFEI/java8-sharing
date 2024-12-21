@@ -4,10 +4,7 @@
  */
 package org.example.java8;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -32,10 +29,16 @@ public class CollectorsAction {
             new Dish("salmon", false, 450, Dish.Type.FISH));
 
     public static void main(String[] args) {
-        testAveragingDouble();
-        testAveragingInt();
-        testAveragingLong();
-        testCollectingAndThen();
+//        testAveragingDouble();
+//        testAveragingInt();
+//        testAveragingLong();
+//        testCollectingAndThen();
+//        testCounting();
+//        testGroupByingFunction();
+
+//        testGroupByingFunctionAndCollector();
+//        testGroupByingFunctionAndSupplierAndCollector();
+        testSummarizingInt();
     }
 
     private static void testAveragingDouble() {
@@ -67,5 +70,41 @@ public class CollectorsAction {
         list.add(new Dish("pork", false, 100, Dish.Type.OTHER));
         System.out.println(list);
     }
+
+
+    private static void testCounting() {
+        System.out.println("testCounting");
+        Optional.of(menu.stream().collect(Collectors.counting())).ifPresent(System.out::println);
+//        menu.stream().count();
+
+    }
+
+    private static void testGroupByingFunction() {
+        System.out.println("testGroupByingFunction");
+        Optional.of(menu.stream().collect(Collectors.groupingBy(Dish::getType))).ifPresent(System.out::println);
+
+    }
+
+    private static void testGroupByingFunctionAndCollector() {
+        System.out.println("testGroupByingFunctionAndCollector");
+        Optional.of(menu.stream().collect(Collectors.groupingBy(Dish::getType, Collectors.counting()))).ifPresent(System.out::println);
+
+    }
+
+    private static void testGroupByingFunctionAndSupplierAndCollector() {
+        System.out.println("testGroupByingFunctionAndSupplierAndCollector");
+        Map<Dish.Type, Double> map = menu.stream().collect(Collectors.groupingBy(Dish::getType, TreeMap::new, Collectors.averagingInt(Dish::getCalories)));
+        System.out.println(map.getClass());
+
+    }
+
+
+    private static void testSummarizingInt() {
+        System.out.println("testSummarizingInt");
+        IntSummaryStatistics result = menu.stream().collect(Collectors.summarizingInt(Dish::getCalories));
+        Optional.of(result).ifPresent(System.out::println);
+
+    }
+
 
 }
