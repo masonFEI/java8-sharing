@@ -92,7 +92,7 @@ public class CollectorsAction {
     }
 
     private static void testGroupByingFunctionAndSupplierAndCollector() {
-        System.out.println("testGroupByingFunctionAndSupplierAndCollector");
+        System.out.println("test GroupByingFunctionAndSupplierAndCollector");
         Map<Dish.Type, Double> map = menu.stream().collect(Collectors.groupingBy(Dish::getType, TreeMap::new, Collectors.averagingInt(Dish::getCalories)));
         System.out.println(map.getClass());
 
