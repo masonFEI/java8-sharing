@@ -24,7 +24,9 @@ public class CollectorsAction2 {
     public static void main(String[] args) {
 //        testGroupingByConcurrent();
 //        testGroupingByConcurrentWithFunctionAndCollector();
-        testGroupingByConcurrentWithFunctionAndCollectorAndSkip();
+//        testGroupingByConcurrentWithFunctionAndCollectorAndSkip();
+        testJoin();
+        testJoinWithPrefixAndSuffix();
     }
 
     private static void testGroupingByConcurrent() {
@@ -46,6 +48,16 @@ public class CollectorsAction2 {
         ConcurrentMap<Dish.Type, Double> collect = menu.stream().collect(Collectors.groupingByConcurrent(Dish::getType, ConcurrentSkipListMap::new, Collectors.averagingInt(Dish::getCalories)));
         Optional.of(collect.getClass()).ifPresent(System.out::println);
         Optional.ofNullable(collect).ifPresent(System.out::println);
+    }
+
+    private static void testJoin() {
+        System.out.println("testJoin");
+        Optional.of(menu.stream().map(Dish::getName).collect(Collectors.joining(","))).ifPresent(System.out::println);
+    }
+
+    private static void testJoinWithPrefixAndSuffix() {
+        System.out.println("testJoin");
+        Optional.of(menu.stream().map(Dish::getName).collect(Collectors.joining(",", "Names{", "}"))).ifPresent(System.out::println);
     }
 
 
