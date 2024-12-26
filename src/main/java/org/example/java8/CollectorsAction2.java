@@ -27,6 +27,8 @@ public class CollectorsAction2 {
 //        testGroupingByConcurrentWithFunctionAndCollectorAndSkip();
         testJoin();
         testJoinWithPrefixAndSuffix();
+
+        testMapping();
     }
 
     private static void testGroupingByConcurrent() {
@@ -58,6 +60,13 @@ public class CollectorsAction2 {
     private static void testJoinWithPrefixAndSuffix() {
         System.out.println("testJoin");
         Optional.of(menu.stream().map(Dish::getName).collect(Collectors.joining(",", "Names{", "}"))).ifPresent(System.out::println);
+    }
+
+
+    private static void testMapping() {
+        System.out.println("testMapping");
+        Optional.of(menu.stream().collect(Collectors.mapping(Dish::getName, Collectors.joining(","))))
+                .ifPresent(System.out::println);
     }
 
 
