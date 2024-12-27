@@ -4,6 +4,7 @@
  */
 package org.example.java8;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.ConcurrentMap;
@@ -25,10 +26,12 @@ public class CollectorsAction2 {
 //        testGroupingByConcurrent();
 //        testGroupingByConcurrentWithFunctionAndCollector();
 //        testGroupingByConcurrentWithFunctionAndCollectorAndSkip();
-        testJoin();
-        testJoinWithPrefixAndSuffix();
+//        testJoin();
+//        testJoinWithPrefixAndSuffix();
+//        testMapping();
 
-        testMapping();
+        testMaxBy();
+        testMinBy();
     }
 
     private static void testGroupingByConcurrent() {
@@ -67,6 +70,18 @@ public class CollectorsAction2 {
         System.out.println("testMapping");
         Optional.of(menu.stream().collect(Collectors.mapping(Dish::getName, Collectors.joining(","))))
                 .ifPresent(System.out::println);
+    }
+
+
+    private static void testMaxBy() {
+        System.out.println("testMaxBy");
+        menu.stream().collect(Collectors.maxBy(Comparator.comparing(Dish::getCalories))).ifPresent(System.out::println);
+    }
+
+
+    private static void testMinBy() {
+        System.out.println("testMinBy");
+        menu.stream().collect(Collectors.minBy(Comparator.comparing(Dish::getCalories))).ifPresent(System.out::println);
     }
 
 
