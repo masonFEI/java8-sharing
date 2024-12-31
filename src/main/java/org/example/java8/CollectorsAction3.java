@@ -41,7 +41,7 @@ public class CollectorsAction3 {
     }
 
     private static void testPartitionByWithPredicateAndCollector() {
-        System.out.println("testPartitionByWithPredicateAndCollector");
+        System.out.println("testPartitionBy WithPredicateAndCollector");
         Map<Boolean, Double> collect = menu.stream().collect(Collectors.partitioningBy(Dish::isVegetarian, Collectors.averagingInt(Dish::getCalories)));
         Optional.of(collect).ifPresent(System.out::println);
     }
