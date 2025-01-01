@@ -4,10 +4,7 @@
  */
 package org.example.java8;
 
-import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 import java.util.function.BinaryOperator;
 import java.util.stream.Collectors;
 
@@ -27,9 +24,12 @@ public class CollectorsAction3 {
 
 //        testPartitionByWithPredicate();
 //        testPartitionByWithPredicateAndCollector();
-        testReducingBinaryOperator();
-        testReducingBinaryOperatorAndIdentity();
-        testReducingBinaryOperatorAndIdentityAndFunction();
+//        testReducingBinaryOperator();
+//        testReducingBinaryOperatorAndIdentity();
+//        testReducingBinaryOperatorAndIdentityAndFunction();
+        testSummarizingDouble();
+        testSummarizingLong();
+        testSummarizingInt();
     }
 
 
@@ -61,6 +61,22 @@ public class CollectorsAction3 {
         System.out.println("testReducingBinaryOperatorAndIdentityAndFunction");
         Integer result = menu.stream().collect(Collectors.reducing(0, Dish::getCalories, (d1, d2) -> d1 + d2));
         System.out.println(result);
+    }
+
+
+    private static void testSummarizingDouble() {
+        System.out.println("testSummarizingDouble");
+        Optional.of(menu.stream().collect(Collectors.summarizingDouble(Dish::getCalories))).ifPresent(System.out::println);
+    }
+
+    private static void testSummarizingLong() {
+        System.out.println("testSummarizingLong");
+        Optional.of(menu.stream().collect(Collectors.summarizingLong(Dish::getCalories))).ifPresent(System.out::println);
+    }
+
+    private static void testSummarizingInt() {
+        System.out.println("testSummarizingInt");
+        Optional.of(menu.stream().collect(Collectors.summarizingInt(Dish::getCalories))).ifPresent(System.out::println);
     }
 
 }
