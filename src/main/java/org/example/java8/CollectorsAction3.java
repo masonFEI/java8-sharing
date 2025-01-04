@@ -58,7 +58,7 @@ public class CollectorsAction3 {
     }
 
     private static void testReducingBinaryOperatorAndIdentityAndFunction() {
-        System.out.println("testReducingBinaryOperatorAndIdentityAndFunction");
+        System.out.println("testReducing BinaryOperatorAndIdentityAndFunction");
         Integer result = menu.stream().collect(Collectors.reducing(0, Dish::getCalories, (d1, d2) -> d1 + d2));
         System.out.println(result);
     }
