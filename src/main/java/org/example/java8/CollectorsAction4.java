@@ -1,5 +1,6 @@
 package org.example.java8;
 
+import java.util.LinkedList;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -12,6 +13,7 @@ public class CollectorsAction4 {
         testSummingDouble();
         testSummingLong();
         testSummingInt();
+        testToCollection();
     }
 
 
@@ -33,6 +35,11 @@ public class CollectorsAction4 {
         System.out.println("testSummingInt");
         Optional.of(menu.stream().collect(Collectors.summingInt(Dish::getCalories))).ifPresent(System.out::println);
 
+    }
+
+    private static void testToCollection() {
+        System.out.println("testToCollection");
+        Optional.of(menu.stream().filter(d -> d.getCalories() > 600).collect(Collectors.toCollection(LinkedList::new))).ifPresent(System.out::println);
     }
 
 
