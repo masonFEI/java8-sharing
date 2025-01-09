@@ -18,7 +18,7 @@ public class CollectorsAction4 {
 
 
     private static void testSummingDouble() {
-        System.out.println("testSummingDouble");
+        System.out.println("testSumming Double");
         Optional.of(menu.stream().collect(Collectors.summingDouble(Dish::getCalories))).ifPresent(System.out::println);
 
         Optional.of(menu.stream().map(Dish::getCalories).mapToInt(Integer::intValue).sum()).ifPresent(System.out::println);
