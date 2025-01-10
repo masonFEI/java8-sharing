@@ -14,6 +14,7 @@ public class CollectorsAction4 {
         testSummingLong();
         testSummingInt();
         testToCollection();
+        testToConcurrentMap();
     }
 
 
@@ -42,5 +43,13 @@ public class CollectorsAction4 {
         Optional.of(menu.stream().filter(d -> d.getCalories() > 600).collect(Collectors.toCollection(LinkedList::new))).ifPresent(System.out::println);
     }
 
+    private static void testToConcurrentMap() {
+        System.out.println("testToConcurrentMap");
+        Optional.of(menu.stream().collect(Collectors.toConcurrentMap(Dish::getName, Dish::getCalories))).ifPresent(v -> {
+                    System.out.println(v);
+                    System.out.println(v.getClass());
+                }
+        );
+    }
 
 }
