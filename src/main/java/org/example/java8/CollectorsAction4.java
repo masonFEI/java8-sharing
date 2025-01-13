@@ -2,6 +2,7 @@ package org.example.java8;
 
 import java.util.LinkedList;
 import java.util.Optional;
+import java.util.concurrent.ConcurrentSkipListMap;
 import java.util.stream.Collectors;
 
 import static org.example.java8.CollectorsAction.menu;
@@ -16,6 +17,8 @@ public class CollectorsAction4 {
         testToCollection();
         testToConcurrentMap();
         testToList();
+        testToConcurrentMapWithBinaryOperator();
+        testToConcurrentMapWithBinaryOperatorAndSupplier();
     }
 
 
@@ -52,6 +55,31 @@ public class CollectorsAction4 {
                 }
         );
     }
+
+    private static void testToConcurrentMapWithBinaryOperator() {
+        System.out.println("testToConcurrentMapWithBinaryOperator");
+        Optional.of(menu.stream().collect(Collectors.toConcurrentMap(Dish::getType, v -> 1L, (a, b) -> a + b)))
+                .ifPresent(v -> {
+                            System.out.println(v);
+                            System.out.println(v.getClass());
+                        }
+
+                );
+
+    }
+
+    private static void testToConcurrentMapWithBinaryOperatorAndSupplier() {
+        System.out.println("testToConcurrentMapWithBinaryOperatorAndSupplier");
+        Optional.of(menu.stream().collect(Collectors.toConcurrentMap(Dish::getType, v -> 1L, (a, b) -> a + b, ConcurrentSkipListMap::new)))
+                .ifPresent(v -> {
+                            System.out.println(v);
+                            System.out.println(v.getClass());
+                        }
+
+                );
+
+    }
+
 
     private static void testToList() {
         Optional.of(menu.stream().filter(Dish::isVegetarian).collect(Collectors.toList())).ifPresent(System.out::println);
