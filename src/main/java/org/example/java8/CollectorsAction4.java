@@ -15,6 +15,7 @@ public class CollectorsAction4 {
         testSummingInt();
         testToCollection();
         testToConcurrentMap();
+        testToList();
     }
 
 
@@ -50,6 +51,10 @@ public class CollectorsAction4 {
                     System.out.println(v.getClass());
                 }
         );
+    }
+
+    private static void testToList() {
+        Optional.of(menu.stream().filter(Dish::isVegetarian).collect(Collectors.toList())).ifPresent(System.out::println);
     }
 
 }
