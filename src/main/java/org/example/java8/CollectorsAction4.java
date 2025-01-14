@@ -16,9 +16,10 @@ public class CollectorsAction4 {
         testSummingInt();
         testToCollection();
         testToConcurrentMap();
-        testToList();
         testToConcurrentMapWithBinaryOperator();
         testToConcurrentMapWithBinaryOperatorAndSupplier();
+        testToList();
+        testToSet();
     }
 
 
@@ -82,7 +83,19 @@ public class CollectorsAction4 {
 
 
     private static void testToList() {
-        Optional.of(menu.stream().filter(Dish::isVegetarian).collect(Collectors.toList())).ifPresent(System.out::println);
+        Optional.of(menu.stream().filter(Dish::isVegetarian).collect(Collectors.toList()))
+                .ifPresent(r -> {
+                    System.out.println(r.getClass());
+                    System.out.println(r);
+                });
+    }
+
+    private static void testToSet() {
+        Optional.of(menu.stream().filter(Dish::isVegetarian).collect(Collectors.toSet()))
+                .ifPresent(r -> {
+                    System.out.println(r.getClass());
+                    System.out.println(r);
+                });
     }
 
 }
