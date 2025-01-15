@@ -20,6 +20,7 @@ public class CollectorsAction4 {
         testToConcurrentMapWithBinaryOperatorAndSupplier();
         testToList();
         testToSet();
+        testToMap();
     }
 
 
@@ -96,6 +97,15 @@ public class CollectorsAction4 {
                     System.out.println(r.getClass());
                     System.out.println(r);
                 });
+    }
+
+    private static void testToMap() {
+        System.out.println("testToMap");
+        Optional.of(menu.stream().collect(Collectors.toMap(Dish::getName, Dish::getCalories))).ifPresent(v -> {
+                    System.out.println(v);
+                    System.out.println(v.getClass());
+                }
+        );
     }
 
 }
