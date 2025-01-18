@@ -1,5 +1,6 @@
 package org.example.java8;
 
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.Optional;
 import java.util.concurrent.ConcurrentSkipListMap;
@@ -101,6 +102,14 @@ public class CollectorsAction4 {
 
     private static void testToMap() {
         System.out.println("testToMap");
+        // 转为map，线程安全的
+        Optional.of(menu.stream().collect(Collectors.collectingAndThen(Collectors.toMap(Dish::getName, Dish::getCalories), Collections::synchronizedMap))).ifPresent(
+                v -> {
+                    System.out.println(v);
+                    System.out.println(v.getClass());
+                }
+        );
+
         Optional.of(menu.stream().collect(Collectors.toMap(Dish::getName, Dish::getCalories))).ifPresent(v -> {
                     System.out.println(v);
                     System.out.println(v.getClass());
