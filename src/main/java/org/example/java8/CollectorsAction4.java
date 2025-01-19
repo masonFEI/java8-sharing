@@ -101,7 +101,7 @@ public class CollectorsAction4 {
     }
 
     private static void testToMap() {
-        System.out.println("testToMap");
+        System.out.println("test ToMap");
         // 转为map，线程安全的
         Optional.of(menu.stream().collect(Collectors.collectingAndThen(Collectors.toMap(Dish::getName, Dish::getCalories), Collections::synchronizedMap))).ifPresent(
                 v -> {
