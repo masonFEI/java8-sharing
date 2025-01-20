@@ -60,7 +60,7 @@ public class CollectorsAction4 {
     }
 
     private static void testToConcurrentMapWithBinaryOperator() {
-        System.out.println("testToConcurrentMapWithBinaryOperator");
+        System.out.println("test ToConcurrentMapWithBinaryOperator");
         Optional.of(menu.stream().collect(Collectors.toConcurrentMap(Dish::getType, v -> 1L, (a, b) -> a + b)))
                 .ifPresent(v -> {
                             System.out.println(v);
