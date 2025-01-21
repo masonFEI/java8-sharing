@@ -1,5 +1,6 @@
 package org.example.java8;
 
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.Optional;
 import java.util.concurrent.ConcurrentSkipListMap;
@@ -16,9 +17,11 @@ public class CollectorsAction4 {
         testSummingInt();
         testToCollection();
         testToConcurrentMap();
-        testToList();
         testToConcurrentMapWithBinaryOperator();
         testToConcurrentMapWithBinaryOperatorAndSupplier();
+        testToList();
+        testToSet();
+        testToMap();
     }
 
 
@@ -57,7 +60,7 @@ public class CollectorsAction4 {
     }
 
     private static void testToConcurrentMapWithBinaryOperator() {
-        System.out.println("testToConcurrentMapWithBinaryOperator");
+        System.out.println("test ToConcurrentMapWithBinaryOperator");
         Optional.of(menu.stream().collect(Collectors.toConcurrentMap(Dish::getType, v -> 1L, (a, b) -> a + b)))
                 .ifPresent(v -> {
                             System.out.println(v);
@@ -82,7 +85,36 @@ public class CollectorsAction4 {
 
 
     private static void testToList() {
-        Optional.of(menu.stream().filter(Dish::isVegetarian).collect(Collectors.toList())).ifPresent(System.out::println);
+        Optional.of(menu.stream().filter(Dish::isVegetarian).collect(Collectors.toList()))
+                .ifPresent(r -> {
+                    System.out.println(r.getClass());
+                    System.out.println(r);
+                });
+    }
+
+    private static void testToSet() {
+        Optional.of(menu.stream().filter(Dish::isVegetarian).collect(Collectors.toSet()))
+                .ifPresent(r -> {
+                    System.out.println(r.getClass());
+                    System.out.println(r);
+                });
+    }
+
+    private static void testToMap() {
+        System.out.println("test ToMap");
+        // 转为map，线程安全的
+        Optional.of(menu.stream().collect(Collectors.collectingAndThen(Collectors.toMap(Dish::getName, Dish::getCalories), Collections::synchronizedMap))).ifPresent(
+                v -> {
+                    System.out.println(v);
+                    System.out.println(v.getClass());
+                }
+        );
+
+        Optional.of(menu.stream().collect(Collectors.toMap(Dish::getName, Dish::getCalories))).ifPresent(v -> {
+                    System.out.println(v);
+                    System.out.println(v.getClass());
+                }
+        );
     }
 
 }
