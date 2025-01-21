@@ -31,7 +31,7 @@ public class CollectorsAction4 {
     }
 
     private static void testSummingLong() {
-        System.out.println("testSummingLong");
+        System.out.println("test SummingLong");
         Optional.of(menu.stream().collect(Collectors.summingLong(Dish::getCalories))).ifPresent(System.out::println);
 
     }
