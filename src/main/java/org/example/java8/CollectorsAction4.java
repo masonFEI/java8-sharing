@@ -46,7 +46,7 @@ public class CollectorsAction4 {
     }
 
     private static void testToCollection() {
-        System.out.println("testToCollection");
+        System.out.println("test ToCollection");
         Optional.of(menu.stream().filter(d -> d.getCalories() > 600).collect(Collectors.toCollection(LinkedList::new))).ifPresent(System.out::println);
     }
 
