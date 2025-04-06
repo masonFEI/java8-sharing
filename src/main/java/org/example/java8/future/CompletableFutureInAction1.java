@@ -32,7 +32,7 @@ public class CompletableFutureInAction1 {
 
     }
 
-    private static double get() {
+    static double get() {
         try {
             Thread.sleep(RANDOM.nextInt(10000));
         } catch (InterruptedException e) {
